@@ -1,0 +1,65 @@
+ <!DOCTYPE html>
+
+    <html lang="en">
+    <head>
+        <title>F.A.Q</title>
+        <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>Email text classifier</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+           
+    </head>
+    <body>
+
+
+
+        <header>
+        
+    	<div id="brandname">
+    		<right> Suggested </right><br>
+    	    <right> Frequently asked questions </right>   
+    	    
+            
+        </div>
+
+            
+            
+              
+        </header>
+
+              <br><br><br><br>
+                {% for i in range(5) %}
+                <button type="button" class="collapsible"> {{i+1}} ) {{result1[i]}}</button>
+                <div class="content">
+                  <p>{{result3[i]}}</p>
+                </div>
+                 
+                {% endfor %}   
+                
+        
+
+        </div>
+
+       </div>
+              
+    </body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+    </html>

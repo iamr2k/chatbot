@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>F.A.Q Search</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+/*** COLORS ***/
+/*** DEMO ***/
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: rgb(255, 255, 255);
+  font: 13px monospace;
+  color: rgb(0, 0, 0);
+}
+p {
+  margin-top: 30px;
+}
+.cntr {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.cntr .cntr-innr {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+/*** STYLES ***/
+.search {
+  display: inline-block;
+  position: relative;
+  height: 35px;
+  width: 35px;
+  box-sizing: border-box;
+  margin: 0px 8px 7px 0px;
+  padding: 7px 9px 0px 9px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 25px;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  cursor: text;
+}
+.search:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  right: -5px;
+  top: 21px;
+  background: rgb(0, 0, 0);
+  border-radius: 3px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+.search.active,
+.search:hover {
+  width: 500px;
+  margin-right: 0px;
+}
+.search.active:after,
+.search:hover:after {
+  height: 0px;
+}
+.search input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  font-size: 15px;
+  color: inherit;
+  background: transparent;
+  outline-width: 0px;
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="cntr">
+<div class="cntr-innr">
+	<h1 style="font-size: 500%;">Frequently Asked Questions</h1>
+	<br><br>
+	
+	<h1 style="font-size: 300%;">Search your question below ...</h1>
+
+	<br><br><br><br>
+
+<label class="search" for="inpt_search">
+	<form action="{{ url_for('predict')}}" method="POST">
+<input id="inpt_search" type="text" name="message"/>
+</form>
+</form>
+</label>
+
+    			
+                    
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js'></script>
+<script id="rendered-js">
+$("#inpt_search").on('focus', function () {
+  $(this).parent('label').addClass('active');
+});
+
+$("#inpt_search").on('blur', function () {
+  if ($(this).val().length == 0)
+  $(this).parent('label').removeClass('active');
+});
+//# sourceURL=pen.js
+    </script>
+</body>
+</html>
