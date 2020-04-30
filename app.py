@@ -110,7 +110,7 @@ def predict():
 
         
 
-    return render_template('result.html', result1=result0,result2=result2,resul3=result1)
+    return render_template('result.html', result0=result0,result1=result1,resul2=result2)
 
 
 
