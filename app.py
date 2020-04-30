@@ -56,8 +56,8 @@ def predict():
        data["cleaned"] = question0
 
        texts_test1 = data.cleaned.astype(str)
-       model1 = models.load_model('/content/faq/lstm.h5')
-       with open('/content/faq/dnntokenizer.pkl', 'rb') as f:
+       model1 = models.load_model('lstm.h5')
+       with open('dnntokenizer.pkl', 'rb') as f:
            tokenizer = pickle.load(f)
 
        sequences_test1 = tokenizer.texts_to_sequences(texts_test1)
@@ -70,9 +70,9 @@ def predict():
        else :
            pred32 = "open-ended"
 
-       with open('/content/faq/asindftfidfvector.pkl', 'rb') as f:
+       with open('asindftfidfvector.pkl', 'rb') as f:
            tfidf_vectorizer = pickle.load(f)
-       with open('/content/faq/asindftfidf.pkl', 'rb') as f:
+       with open('asindftfidf.pkl', 'rb') as f:
            tfidf_matrix = pickle.load(f)
 
        question= question0[0][0]
@@ -88,9 +88,9 @@ def predict():
 
        question = question + " " +str(result[0]) + " " +pred32
 
-       with open('/content/faq/qtfidfvector.pkl', 'rb') as f:
+       with open('qtfidfvector.pkl', 'rb') as f:
            tfidf_vectorizer = pickle.load(f)
-       with open('/content/faq/questiontfidf.pkl', 'rb') as f:
+       with open('questiontfidf.pkl', 'rb') as f:
            tfidf_matrix = pickle.load(f)
 
        query_vect = tfidf_vectorizer.transform([question])
@@ -105,7 +105,6 @@ def predict():
        for i in top_5_simmi:
            result0.append(questiondf.iloc[i]['question'])
            result1.append(answerdf.iloc[i]['answer'])       
-           #print("top questions", processed[processed.asin == asindf.iloc[i]['asin'] ].question)
            result2.append(similarity[0, i])
 
 
