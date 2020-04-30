@@ -19,9 +19,9 @@ import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-question = pd.read_csv("question.csv")
+questiondf = pd.read_csv("question.csv")
 asindf = pd.read_csv("asindf.csv")
-answer = pd.read_csv("answer.csv")
+answerdf = pd.read_csv("answer.csv")
 features = pd.read_csv("feature.csv")
 
 
