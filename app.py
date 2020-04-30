@@ -28,7 +28,7 @@ features = pd.read_csv("feature.csv")
 
 
 def clean(x):
-    x = re.sub(r'http\S+', '', x))
+    x = re.sub(r'http\S+', '', x)
     x = re.sub(r'[^\w]', ' ', x).lower())
     x = re.sub(r'(?:^| )\w(?:$| )', ' ', x).strip())
     x = x.replace('  ',' ')
