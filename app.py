@@ -72,11 +72,11 @@ def predict():
         print('**************** QuestionType = ',pred32)
         questtype.append(pred32)
 
-        with open('/content/pca.pkl', 'rb') as f :
+        with open('pca.pkl', 'rb') as f :
             pca = pickle.load(f)
-        with open('/content/kmeans.pkl', 'rb') as f :
+        with open('kmeans.pkl', 'rb') as f :
             kmeans = pickle.load(f)
-        with open('/content/tfidf.pkl', 'rb') as f :
+        with open('tfidf.pkl', 'rb') as f :
             tfidf = pickle.load(f)
  
         def cluster (userinput):
