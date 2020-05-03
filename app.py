@@ -136,7 +136,7 @@ def predict():
  
  
 
-    return render_template('result.html', result0=result0,result1=result1,result2=result2,productcode=productcode,questtype=questtype,clusterid)
+    return render_template('result.html', result0=result0,result1=result1,result2=result2,productcode=productcode,questtype=questtype,clusterid=clusterid)
  
 
 
