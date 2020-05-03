@@ -10,14 +10,14 @@ import numpy as np
 
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from sklearn.decomposition import PCA
-import sklearn.decomposition._pca
 from sklearn.cluster import KMeans 
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import normalize
 from keras.models import Sequential
 from keras.layers import Dense, Embedding, LSTM
 from keras.optimizers import Adam
 from keras import models as models
-from sklearn.preprocessing import normalize
 import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
