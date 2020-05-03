@@ -55,10 +55,13 @@ def predict():
        data = pd.DataFrame(question0)
        data["cleaned"] = question0
 
+
+
        texts_test1 = data.cleaned.astype(str)
        model1 = models.load_model('lstm.h5')
        with open('dnntokenizer.pkl', 'rb') as f:
            tokenizer = pickle.load(f)
+
 
        sequences_test1 = tokenizer.texts_to_sequences(texts_test1)
 
@@ -69,13 +72,34 @@ def predict():
            pred32 = "yes/no"
        else :
            pred32 = "open-ended"
+       with open('/content/pca.pkl', 'rb') as f :
+           pca = pickle.load(f)
+       with open('/content/kmeans.pkl', 'rb') as f :
+           kmeans = pickle.load(f)
+       with open('/content/tfidf.pkl', 'rb') as f :
+           tfidf = pickle.load(f)
 
+       def cluster (userinput):
+            message = [[0]]
+            message[0][0] = userinput
+            message = np.array(message)
+            data = pd.DataFrame(message)
+            data["content"] = message
+            tf_idf = tfidf.transform(data["content"])
+            tf_idf_norm = normalize(tf_idf)
+            tf_idf_array = tf_idf_norm.toarray()
+            Y_sklearn = pca.transform(tf_idf_array)
+            prediction = kmeans.predict(Y_sklearn)
+            
+            return userinput+' cluster'+str(prediction[0])
+        
        with open('asindftfidfvector.pkl', 'rb') as f:
            tfidf_vectorizer = pickle.load(f)
        with open('asindftfidf.pkl', 'rb') as f:
            tfidf_matrix = pickle.load(f)
 
        question= question0[0][0]
+       clusterresult = cluster(question)
 
        query_vect = tfidf_vectorizer.transform([question])
             
@@ -86,7 +110,7 @@ def predict():
        for i in top_5_simmi:
            result.append(asindf.iloc[i]['asin'])
 
-       question = question + " " +str(result[0]) + " " +pred32
+       question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
 
        with open('qtfidfvector.pkl', 'rb') as f:
            tfidf_vectorizer = pickle.load(f)
