@@ -135,9 +135,8 @@ def predict():
             result2.append(similarity[0, i])
  
  
-         
- 
-    return render_template('result.html', result0=result0,result1=result1,result2=result2)
+
+    return render_template('result.html', result0=result0,result1=result1,result2=result2,productcode=productcode,questtype=questtype,clusterid)
  
 
 
