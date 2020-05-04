@@ -92,7 +92,7 @@ def predict():
              Y_sklearn = pca.transform(tf_idf_array)
              prediction = kmeans.predict(Y_sklearn)
              clusterid = str(prediction[0])
-             return userinput+' cluster'+str(prediction[0])
+             return clusterid
          
         with open('asindftfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
@@ -101,6 +101,7 @@ def predict():
  
         question= question0[0][0]
         clusterresult = cluster(question)
+        clusterresult = userinput+' cluster'+clusterresult
         print("****************",clusterresult)
         
 
