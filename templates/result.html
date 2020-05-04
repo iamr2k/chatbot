@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
     <html lang="en">
     <head>
@@ -35,10 +35,15 @@
                 <button type="button" class="collapsible"> {{i+1}} ) {{result0[i]}}</button>
                 <div class="content">
                   <p>{{result1[i]}}</p><br>
-                 <p>{{result2[i]}}</p>
+                 <p style="font-size: 10px;"> Qusetion similarity = {{result2[i]}}</p>
+                 
                 </div>
                  
-                {% endfor %}   
+                {% endfor %} 
+                
+                <p>Product code = {{productcode}}</p>
+                 <p>Question type = {{questtype}}</p>
+                 <p>clusterid = {{clusterid))</p>
                 
         
 
