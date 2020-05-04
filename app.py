@@ -101,8 +101,8 @@ def predict():
  
         question= question0[0][0]
         clusterid = cluster(question)
-        clusterresult = question+' cluster'+clusterid
-        print("****************",clusterresult)
+        clusterresult = ' cluster'+clusterid
+        print("****************clusterresult",clusterresult)
         
 
  
