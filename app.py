@@ -53,8 +53,8 @@ def predict():
         question0 = [[0]]
         question0[0][0] = user_input_question
         question = np.array(question0)
-        data = pd.DataFrame(question0)
-        data["cleaned"] = question0
+        data = pd.DataFrame(question)
+        data["cleaned"] = question
  
         texts_test1 = data.cleaned.astype(str)
         model1 = models.load_model('lstm.h5')
@@ -116,6 +116,7 @@ def predict():
             result.append(asindf.iloc[i]['asin'])
         print('*************** Product code (asin)',result[0])
         question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
+        print("********************************* Final transformed questuion = ",question)
         productcode = str(result[0])
         with open('qtfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
