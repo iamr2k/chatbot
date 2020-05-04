@@ -26,9 +26,7 @@ questiondf = pd.read_csv("question.csv")
 asindf = pd.read_csv("asindf.csv")
 answerdf = pd.read_csv("answer.csv")
 
-productcode = []
-questtype = []
-clusterid = []
+
 
 
 
@@ -73,7 +71,7 @@ def predict():
             pred32 = "open-ended"
 
         print('**************** QuestionType = ',pred32)
-        questtype.append(pred32)
+        questtype = pred32)
 
         with open('pca.pkl', 'rb') as f :
             pca = pickle.load(f)
@@ -93,7 +91,7 @@ def predict():
              tf_idf_array = tf_idf_norm.toarray()
              Y_sklearn = pca.transform(tf_idf_array)
              prediction = kmeans.predict(Y_sklearn)
-             
+             clusterid = str(prediction[0])
              return userinput+' cluster'+str(prediction[0])
          
         with open('asindftfidfvector.pkl', 'rb') as f:
@@ -104,7 +102,7 @@ def predict():
         question= question0[0][0]
         clusterresult = cluster(question)
         print("****************",clusterresult)
-        clusterid.append(clusterresult)
+        
 
  
         query_vect = tfidf_vectorizer.transform([question])
@@ -117,7 +115,7 @@ def predict():
             result.append(asindf.iloc[i]['asin'])
         print('*************** Product code (asin)',result[0])
         question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
- 
+        productcode = str(result[0])
         with open('qtfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
         with open('questiontfidf.pkl', 'rb') as f:
