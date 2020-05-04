@@ -8,11 +8,13 @@
 <meta name="apple-mobile-web-app-title" content="CodePen">
 <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
 <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 <title>F.A.Q Search</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
 
 <style>
+  
 /*** COLORS ***/
 /*** DEMO ***/
 html,
@@ -22,7 +24,8 @@ body {
 }
 body {
   background: rgb(255, 255, 255);
-  font-family: 'Quicksand', sans-serif ;
+  font-size: 13px;
+  font-family: 'Baloo 2', cursive;
   color: rgb(0, 0, 0);
 }
 p {
@@ -39,39 +42,44 @@ p {
   vertical-align: middle;
 }
 /*** STYLES ***/
+.search.active,
 .search {
   display: inline-block;
   position: relative;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   box-sizing: border-box;
-  margin: 0px 8px 12px 0px;
+  margin: 0px 12px 12px 0px;
   padding: 7px 9px 0px 9px;
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 35px;
-  -webkit-transition: all 600ms ease;
-  transition: all 600ms ease;
+  border: 0px snow;
+  border-radius: 6px;
+  transition: all 200ms ease;
   cursor: text;
-  box-shadow: 0px 0.5px 50px #bbc7c7;
+  box-shadow: 0px 1px 80px #b8b9b9;
+  width: 600px;
+  margin-right: 0px;
 }
 .search:after {
-  content: "";
+  
   position: absolute;
   width: 2px;
   height: 20px;
   right: -6px;
   top: 34px;
   background: rgb(8, 8, 8);
-  border-radius: 3px;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  -webkit-transition: all 400ms ease;
+  border-radius: 0px;
+  
   transition: all 400ms ease;
 }
-.search.active,
+.search.focus {
+  width: 700px;
+  margin-right: 0px; 
+  border: 0.5px solid rgb(0, 0, 0);
+}
 .search:hover {
-  width: 500px;
+  width: 650px;
   margin-right: 0px;
+  border: 0.3px solid rgb(0, 0, 0);
 }
 .search:active:after,
 .search:hover:after {
@@ -82,53 +90,60 @@ p {
   width: 100%;
   border: none;
   box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
+  font-family: Helvetica;
   font-size: 20px;
+  line-height:50px;
   color: inherit;
   background: transparent;
   outline-width: 0px;
 }
+button{
+  position:absolute;
+  right: 0px;
+  top: 0px;
+  border:none;
+  height:60px;
+  background-color: transparent;
+  width:60px;
+  border-radius:0;
+  outline:none;
+  text-align:center;
+  font-weight:lighter;
+  padding:2px;
+}
+button:hover{
+  cursor:pointer;
+}
+.buttonInside{
+  position:relative;
+  margin-bottom:10px;
+}
 </style>
-<script>
-  $("#inpt_search").on('focus', function () {
-    $(this).parent('label').addClass('active');
-  });
-  
-  $("#inpt_search").on('blur', function () {
-    if($(this).val().length == 0)
-      $(this).parent('label').removeClass('active');
-  });
-  </script>
+
 </head>
+
+
+
+
 <body translate="no">
 <div class="cntr">
 <div class="cntr-innr">
-	<h1 style="font-size: 500%;">Frequently Asked Questions</h1>
-	<br><br>
+	<h1 style="font-size: 400%;">Frequently Asked Questions</h1>
+	<br>
 	
-	<h1 style="font-size: 300%;">Search your question below ...</h1>
+	<h1 style="font-size: 200%;">Search your question below</h1>
 
-	<br><br><br><br>
 	<br><br>
   <form action="{{ url_for('predict')}}" method="POST">
+
 <label class="search" for="inpt_search">
 	
 <input id="inpt_search" type="text" name="message"/>
-<datalist id="pasta">
-  {% for item in prediction %}
-  <option>{{item}}</option>
-  {% endfor %}
-
-</datalist>
-
-
+<button style="font-family:Arial, FontAwesome ; font-size: 28px;color: gray;">&#xF002</button>
 </label>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br>
 <h1 style="font-size: 150%;">Group-5  Project-P18</h1>
-
-
-
-    			
+			
                     
 </div>
 </div>
