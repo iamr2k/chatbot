@@ -101,7 +101,7 @@ def predict():
  
         question= question0[0][0]
         clusterresult = cluster(question)
-        clusterresult = userinput+' cluster'+clusterresult
+        clusterresult = question+' cluster'+clusterresult
         print("****************",clusterresult)
         
 
