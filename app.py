@@ -116,7 +116,7 @@ def predict():
             result.append(asindf.iloc[i]['asin'])
         print('*************** Product code (asin)',result[0])
         question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
-        print("********************************* Final transformed questuion = ",question)
+        print("********************************* Final transformed question = ",question)
         productcode = str(result[0])
         with open('qtfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
