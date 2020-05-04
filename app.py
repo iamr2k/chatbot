@@ -100,8 +100,8 @@ def predict():
             tfidf_matrix = pickle.load(f)
  
         question= question0[0][0]
-        clusterresult = cluster(question)
-        clusterresult = question+' cluster'+clusterresult
+        clusterid = cluster(question)
+        clusterresult = question+' cluster'+clusterid
         print("****************",clusterresult)
         
 
