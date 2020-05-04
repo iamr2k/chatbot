@@ -71,7 +71,7 @@ def predict():
             pred32 = "open-ended"
 
         print('**************** QuestionType = ',pred32)
-        questtype = pred32)
+        questtype = pred32
 
         with open('pca.pkl', 'rb') as f :
             pca = pickle.load(f)
