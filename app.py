@@ -93,6 +93,18 @@ def predict():
              prediction = kmeans.predict(Y_sklearn)
              clusterid = str(prediction[0])
              return clusterid
+        def productq(inputq):
+            j = 'product not found'
+            query = "amazon "+inputq
+            try :
+                for j in search(query, tld="com", num=1, stop=1):
+                j = j.split(sep='.com/')[1]
+                j = j.split(sep='/')[0]
+             except :
+                j = 'product not found'
+            return j
+        
+
          
         with open('asindftfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
@@ -115,9 +127,11 @@ def predict():
         for i in top_5_simmi:
             result.append(asindf.iloc[i]['asin'])
         print('*************** Product code (asin)',result[0])
+        
         question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
         print("********************************* Final transformed question = ",question)
         productcode = str(result[0])
+        productname = productq(productcode)
         with open('qtfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
         with open('questiontfidf.pkl', 'rb') as f:
@@ -139,7 +153,7 @@ def predict():
  
  
 
-    return render_template('result.html', result0=result0,result1=result1,result2=result2,productcode=productcode,questtype=questtype,clusterid=clusterid)
+    return render_template('result.html', result0=result0,result1=result1,result2=result2,productcode=productcode,productname = productname,questtype=questtype,clusterid=clusterid)
  
 
 
