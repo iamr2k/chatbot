@@ -127,11 +127,11 @@ def predict():
         for i in top_5_simmi:
             result.append(asindf.iloc[i]['asin'])
         print('*************** Product code (asin)',result[0])
-        
-        question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult
-        print("********************************* Final transformed question = ",question)
         productcode = str(result[0])
         productname = productq(productcode)
+        question = question + " " +str(result[0]) + " " +pred32 + " " +clusterresult+" "+productname
+        print("********************************* Final transformed question = ",question)
+        
         with open('qtfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
         with open('questiontfidf.pkl', 'rb') as f:
