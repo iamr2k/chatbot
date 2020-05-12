@@ -93,14 +93,15 @@ def predict():
              prediction = kmeans.predict(Y_sklearn)
              clusterid = str(prediction[0])
              return clusterid
+        from googlesearch import search
         def productq(inputq):
             j = 'product not found'
             query = "amazon "+inputq
             try :
                 for j in search(query, tld="com", num=1, stop=1):
-                j = j.split(sep='.com/')[1]
-                j = j.split(sep='/')[0]
-             except :
+                    j = j.split(sep='.co.in/')[1]
+                    j = j.split(sep='/')[0]
+            except :
                 j = 'product not found'
             return j
         
