@@ -95,18 +95,16 @@ def predict():
              return clusterid
         from googlesearch import search
         def productq(inputq):
-            j = 'product not found'
-            query = "amazon "+inputq
-            try :
-                for j in search(query, tld="com", num=1, stop=1):
-                    j = j.split(sep='.co.in/')[1]
-                    j = j.split(sep='/')[0]
-            except :
-                j = 'product not found'
-            return j
-        
+             j = 'product not found'
+             query = "amazon "+inputq
+             try :
+                 for j in search(query, tld="com", num=1, stop=1):
+                     j = j.split(sep='.com/')[1]
+                     j = j.split(sep='/')[0]
+             except :
+                 j = 'product not found'
+             return j
 
-         
         with open('asindftfidfvector.pkl', 'rb') as f:
             tfidf_vectorizer = pickle.load(f)
         with open('asindftfidf.pkl', 'rb') as f:
