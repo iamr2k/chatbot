@@ -22,9 +22,6 @@ idna==2.8
 Jinja2==2.10.3
 joblib==0.13.2
 json5==0.8.5
-Keras==2.3.1
-Keras-Applications==1.0.8
-Keras-Preprocessing==1.1.0
 keyring==18.0.0
 numpy==1.16.5
 numpydoc==0.9.1
