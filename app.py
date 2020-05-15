@@ -270,7 +270,7 @@ def home():
     return render_template("index.html")
 
 @app.route("/get")    
-
+global action
 def get_bot_response():
     global action
     userText = request.args.get('msg')
