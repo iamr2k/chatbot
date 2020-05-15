@@ -272,13 +272,14 @@ def home():
 @app.route("/get")    
 
 def get_bot_response():
+    global action
     userText = request.args.get('msg')
-    k,a = robot(userText)
-    response = k
-    if a == 1 :
-        k,a = robot("o")
-        response = k
+    response,action = robot(userText)
     return response
+if action == 1 :
+    get_bot_response()
+
+  
 
 
 if __name__ == "__main__":
