@@ -271,6 +271,7 @@ def home():
 
 @app.route("/get")    
 global action
+action = 0
 def get_bot_response():
     global action
     userText = request.args.get('msg')
