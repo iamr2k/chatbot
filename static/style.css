@@ -161,11 +161,14 @@ h3 {
 }
 
 .botText {
-    color: Black;
+    color: white;
     font-family: monospace;
     font-size: 17px;
     text-align: left;
     line-height: 30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #EF5350
 }
 
 .botText span {
@@ -173,7 +176,7 @@ h3 {
     padding : 10px;
     padding-left: 20px;
     padding-right: 20px;
-    border-radius: 50px;
+    
 }
 
 #tidbit {
