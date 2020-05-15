@@ -245,6 +245,7 @@ def robot(user_response):
     global typeq 
     global variable 
     global firstq
+    global action
     user_response = clean(user_response)
     if(user_response != 'bye'):
       if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
