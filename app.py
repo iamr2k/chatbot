@@ -91,12 +91,12 @@ def response(user_response , firstq , typeq , variable):
                 productcode , similarity = asin(user_response)
                 if similarity[0]>0.4:
                     robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
-                    flag = 2
+                    flag = 33
                     variable = productcode[0] + user_response
                     action = 1
                 elif (similarity[0]<= 0.4):
                     robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
-                    flag = 3
+                    flag = 34
                     variable = productcode
                     action = 1
         elif(typeq == 33):
