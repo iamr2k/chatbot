@@ -276,8 +276,6 @@ def get_bot_response():
     userText = request.args.get('msg')
     response,action = robot(userText)
     return response
-if action == 1 :
-    get_bot_response()
 
   
 
