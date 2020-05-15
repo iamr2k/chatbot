@@ -161,7 +161,7 @@ h3 {
 }
 
 .botText {
-    color: white;
+    color: Black;
     font-family: monospace;
     font-size: 17px;
     text-align: left;
@@ -169,7 +169,7 @@ h3 {
 }
 
 .botText span {
-    background-color: #EF5350;
+    background-color: transparent;
     padding : 10px;
     padding-left: 20px;
     padding-right: 20px;
