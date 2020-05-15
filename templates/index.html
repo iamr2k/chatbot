@@ -2,14 +2,14 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <h1>Flask Chatterbot Example</h1>
 <br><br><br>
     <div>
       <div id="chatbox">
-        <p class="botText"><span>Hi! I'm Chatterbot.</span></p>
+        <p class="botText"><span>Hi! I'm qBot <br> tell me your query , I will search it in amazon product questions.</span></p>
       </div>
       <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Message">
@@ -28,12 +28,12 @@
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
-        $("#textInput").keypress(function() {
-            if(e.which == 13) {
-                getBotResponse();
+        $("#textInput").keyup(function(e) {
+            if(e.keyCode == 13) {
+              getBotResponse();
             }
         });
-        $("#buttonInput").click(function() {
+        $("#buttonInput").focus(function(e) {
           getBotResponse();
         })
       </script>
