@@ -90,12 +90,12 @@ def response(user_response , firstq , typeq , variable):
             elif((score[0] <= 0.9) and (typeq== 0)):
                 productcode , similarity = asin(user_response)
                 if similarity[0]>0.4:
-                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
+                    robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
                     flag = 33
                     variable = productcode[0] + user_response
                     action = 1
                 elif (similarity[0]<= 0.4):
-                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
+                    robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
                     flag = 34
                     variable = productcode
                     action = 1
@@ -118,7 +118,7 @@ def response(user_response , firstq , typeq , variable):
                 k = i
                 if  productq(i) != 'product not found':
                     k = productq(i)
-                robo_response = robo_response + "<br> " + str(num) + k
+                robo_response = robo_response + "<br> " + str(num) + "  " + k
             flag = 4
             variable = productcode
             robo_response = robo_response+"<br> Reply product number if your product is in it"
@@ -141,7 +141,7 @@ def response(user_response , firstq , typeq , variable):
                     k = i
                     if  productq(i) != 'product not found':
                         k = productq(i)
-                    robo_response = robo_response + "<br>" + str(num) + k
+                    robo_response = robo_response + "<br>" + str(num) + "  " + k
                 robo_response = robo_response+"<br> Reply product number if your product is in it"
                 flag = 4
                 variable = productcode
@@ -270,7 +270,6 @@ def home():
     return render_template("index.html")
 
 @app.route("/get")    
-global action
 action = 0
 def get_bot_response():
     global action
