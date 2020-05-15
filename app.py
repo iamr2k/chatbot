@@ -239,7 +239,7 @@ typeq = 0
 firstq = 0
 variable = 0
 resp = 0
-
+action = 0
 def robot(user_response):
     global resp 
     global typeq 
@@ -270,7 +270,7 @@ def home():
     return render_template("index.html")
 
 @app.route("/get")    
-action = 0
+
 def get_bot_response():
     global action
     userText = request.args.get('msg')
