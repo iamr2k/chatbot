@@ -264,7 +264,7 @@ def robot(user_response):
     if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
       k = "DOCBot: You are welcome !"
     if('want' in user_response  or 'know' in user_response or 'question'in user_response ):
-      k = "Yeah ! Tell me")
+      k = "Yeah ! Tell me"
     else:
       if(greeting(user_response) != None):
         k = "DOCBot: "+greeting(user_response))
