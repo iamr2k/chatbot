@@ -262,12 +262,12 @@ def robot(user_response):
   user_response = clean(user_response)
   if(user_response != 'bye'):
     if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
-      print("DOCBot: You are welcome !")
+      k = "DOCBot: You are welcome !"
     if('want' in user_response  or 'know' in user_response or 'question'in user_response ):
-      print("Yeah ! Tell me")
+      k = "Yeah ! Tell me")
     else:
       if(greeting(user_response) != None):
-        print("DOCBot: "+greeting(user_response))
+        k = "DOCBot: "+greeting(user_response))
       else:
         resp , typeq , variable , firstq = response(user_response ,firstq ,typeq , variable)
         k = "Bot: "+str(resp)
