@@ -9,7 +9,7 @@
 <br><br><br>
     <div>
       <div id="chatbox">
-        <p class="botText"><span>Hi! I'm qBot <br> tell me your query , I will search it in amazon product questions.</span></p>
+        <button class="botText"><span>Hi! I'm qBot <br> tell me your query , I will search it in amazon product questions.</span></button>
       </div>
       <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Message">
@@ -23,7 +23,7 @@
           $("#chatbox").append(userHtml);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            var botHtml = '<button class="botText"><span>' + data + '</span></button>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             if(data == "I am confused with the product you are talking about. I am searching it in google please wait") {
