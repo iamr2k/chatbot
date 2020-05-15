@@ -276,7 +276,7 @@ def get_bot_response():
     k,a = robot(userText)
     response = k
     if a == 1 :
-        k = robot("o")
+        k,a = robot("o")
         response = k
     return response
 
