@@ -90,12 +90,12 @@ def response(user_response , firstq , typeq , variable):
             elif((score[0] <= 0.9) and (typeq== 0)):
                 productcode , similarity = asin(user_response)
                 if similarity[0]>0.4:
-                    robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
+                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
                     flag = 33
                     variable = productcode[0] + user_response
                     action = 1
                 elif (similarity[0]<= 0.4):
-                    robo_response = robo_response+"I am confused with the product you are talking about. <br> May I search it in google ?"
+                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
                     flag = 34
                     variable = productcode
                     action = 1
@@ -118,7 +118,7 @@ def response(user_response , firstq , typeq , variable):
                 k = i
                 if  productq(i) != 'product not found':
                     k = productq(i)
-                robo_response = robo_response + "<br> " + str(num) + "  " + k
+                robo_response = robo_response + "<br> " + str(num) + k
             flag = 4
             variable = productcode
             robo_response = robo_response+"<br> Reply product number if your product is in it"
@@ -141,7 +141,7 @@ def response(user_response , firstq , typeq , variable):
                     k = i
                     if  productq(i) != 'product not found':
                         k = productq(i)
-                    robo_response = robo_response + "<br>" + str(num) + "  " + k
+                    robo_response = robo_response + "<br>" + str(num) + k
                 robo_response = robo_response+"<br> Reply product number if your product is in it"
                 flag = 4
                 variable = productcode
@@ -239,13 +239,12 @@ typeq = 0
 firstq = 0
 variable = 0
 resp = 0
-action = 0
+
 def robot(user_response):
     global resp 
     global typeq 
     global variable 
     global firstq
-    global action
     user_response = clean(user_response)
     if(user_response != 'bye'):
       if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
@@ -277,9 +276,6 @@ def get_bot_response():
     userText = request.args.get('msg')
     response,action = robot(userText)
     return response
-
-  
-
 
 if __name__ == "__main__":
     app.run()
