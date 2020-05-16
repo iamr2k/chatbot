@@ -10,13 +10,15 @@
     
 <br><br><br>
     <div>
+      
       <div id="chatbox">
+        <img src="https://media.giphy.com/media/2UEMOVIDd0CPBveU3w/giphy.gif" style="width:200px;"><br>
         <button class="botText1"><span>Hi! I'm qBot  </span></button><br> <br>
         <button class="botText2"><span>tell me your query</span></button><br> <br>
         <button class="botText3"><span>I will search it in amazon product questions.</span></button>
       </div>
       <div id="userInput">
-        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>  <br>
+        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus >  <br>
         <input id="buttonInput" type="submit" value="Send" style="left: 90vw;">
       </div>
       <script>
@@ -29,6 +31,7 @@
             var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
             $(".botText4").remove();
             $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             document.getElementById("textInput").disabled = false;
             document.getElementById("buttonInput").disabled = false;
             });
@@ -37,21 +40,18 @@
        
         function getBotResponse() {
           var rawText = $("#textInput").val();
-          var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+          var userHtml = '<br><br><p class="userText"><span>' + rawText + '</span></p><br><br><br>';
           $("#textInput").val("");
           $("#chatbox").append(userHtml);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          if(rawText == "hi") {
-            var botHtml = '<br><button class="botText"><span>' + "Hello" + '</span></button>';
-            $("#chatbox").append(botHtml);
-          }
           $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<button class="botText"><span>' + data + '</span></button>';
+            var botHtml = '<br><br><button class="botText"><span>' + data + '</span></button><br>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             if(data == 'I am confused with the product you are talking about. I am searching it in google please wait') {
               var botHtml = '<br><br><button class="botText4"><span>' + "Finding results" + '</span></button>';
               $("#chatbox").append(botHtml);
+              document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
               secondresp();
             }
           });

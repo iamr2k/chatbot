@@ -25,7 +25,6 @@ with open('questiontfidf.pkl', 'rb') as f:
 
 def clean(x):
     x = x.lower()
-    x = re.sub(r'[^\w]', ' ', x)
     return x
 def productq(inputq):
     j = 'product not found'
@@ -77,7 +76,6 @@ def response(user_response , firstq , typeq , variable):
     user_response = clean(user_response)
     robo_response = ''
     score = [0]
-    action = 0
     try :
         if (typeq == 0) : #first robo response
             firstq = user_response
@@ -93,12 +91,12 @@ def response(user_response , firstq , typeq , variable):
                     robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
                     flag = 33
                     variable = productcode[0] + user_response
-                    action = 1
+                    
                 elif (similarity[0]<= 0.4):
                     robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
                     flag = 34
                     variable = productcode
-                    action = 1
+                    
         elif(typeq == 33):
             productname = productq(variable)
             if productname != 'product not found':
@@ -234,7 +232,7 @@ def response(user_response , firstq , typeq , variable):
             variable = 0
             firstq = 0
 
-    return robo_response , flag , variable ,firstq ,action
+    return robo_response , flag , variable ,firstq
 
 
     
@@ -252,15 +250,13 @@ def robot(user_response):
     if(user_response != 'bye'):
       if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
         k ="You are welcome !"
-      if('want' in user_response  or 'know' in user_response or 'question'in user_response ):
-        k = "Yeah ! Tell me"
       else:
         if(greeting(user_response) != None):
           k = greeting(user_response)
         else:
-          resp , typeq , variable , firstq ,action = response(user_response ,firstq ,typeq , variable)
+          resp , typeq , variable , firstq = response(user_response ,firstq ,typeq , variable)
           k = str(resp)
-    return k , action
+    return k
         
 
 
@@ -276,7 +272,7 @@ def home():
 
 def get_bot_response():
     userText = request.args.get('msg')
-    response,action = robot(userText)
+    response = robot(userText)
     return response
 
 if __name__ == "__main__":
