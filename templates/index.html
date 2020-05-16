@@ -2,7 +2,6 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
@@ -12,7 +11,7 @@
         <button class="botText"><span>Hi! I'm qBot <br> tell me your query , I will search it in amazon product questions.</span></button>
       </div>
       <div id="userInput">
-        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="textInput" type="text" name="msg" placeholder="Message"> <br>
         <input id="buttonInput" type="submit" value="Send">
       </div>
       <script>
@@ -27,6 +26,8 @@
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             if(data == "I am confused with the product you are talking about. I am searching it in google please wait") {
+              var botHtml = '<button class="botText"><span>' + "Thinking..." + '</span></button>';
+              $("#chatbox").append(botHtml);
               getBotResponse();
             }
           });
