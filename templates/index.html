@@ -2,7 +2,6 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
@@ -22,6 +21,23 @@
         <input id="buttonInput" type="submit" value="Send" style="left: 90vw;">
       </div>
       <script>
+        function thirdresp() {
+          var rawText = "ok"
+          document.getElementById("textInput").disabled = true;
+          document.getElementById("buttonInput").disabled = true;
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          $.get("/get", { msg: rawText }).done(function(data) {
+            
+            var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
+            $(".botText4").remove();
+            $("#chatbox").append(botHtml);
+            
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            document.getElementById("textInput").disabled = false;
+            document.getElementById("buttonInput").disabled = false;
+            });
+            
+        }
         function secondresp() {
           var rawText = "ok"
           document.getElementById("textInput").disabled = true;
@@ -32,6 +48,12 @@
             var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
             $(".botText4").remove();
             $("#chatbox").append(botHtml);
+            if(data == 'I am finding similar questions for you') {
+              var botHtml = '<br><br><button class="botText4"><span>' + "Finding results" + '</span></button>';
+              $("#chatbox").append(botHtml);
+              document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+              thirdresp();
+            }
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             document.getElementById("textInput").disabled = false;
             document.getElementById("buttonInput").disabled = false;
@@ -49,12 +71,13 @@
             var botHtml = '<br><br><button class="botText"><span>' + data + '</span></button><br>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            if(data == 'I am confused with the product you are talking about. I am searching it in google please wait') {
+            if(data == 'I am confused with the product you are talking about. I am searching it in the internet please wait') {
               var botHtml = '<br><br><button class="botText4"><span>' + "Finding results" + '</span></button>';
               $("#chatbox").append(botHtml);
               document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
               secondresp();
             }
+            
           });
         }
         $("#textInput").keyup(function(e) {

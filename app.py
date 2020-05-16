@@ -74,6 +74,7 @@ def asin(question) :
 
 def response(user_response , firstq , typeq , variable):
     user_response = clean(user_response)
+    print(user_response,typeq,firstq)
     robo_response = ''
     score = [0]
     try :
@@ -88,26 +89,23 @@ def response(user_response , firstq , typeq , variable):
             elif((score[0] <= 0.9) and (typeq== 0)):
                 productcode , similarity = asin(user_response)
                 if similarity[0]>0.4:
-                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
+                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in the internet please wait"
                     flag = 33
-                    variable = productcode[0] + user_response
-                    
+                    variable = productcode[0]
+                    print(variable)
                 elif (similarity[0]<= 0.4):
-                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in google please wait"
+                    robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in the internet please wait"
                     flag = 34
                     variable = productcode
-                    
+                    print(variable)
         elif(typeq == 33):
             productname = productq(variable)
             if productname != 'product not found':
                 robo_response = robo_response+"Is it "+productname + " ?"
                 flag = 2
-                variable = productcode
             else :
                 robo_response = robo_response+"I am finding similar questions for you"
                 flag = 3
-                variable = productcode
-
         elif(typeq == 34):
             num = 0
             productcode = variable
@@ -120,13 +118,11 @@ def response(user_response , firstq , typeq , variable):
             flag = 4
             variable = productcode
             robo_response = robo_response+"<br> Reply product number if your product is in it"
-
-
         elif typeq == 1 : #flag1 lucky answers
             robo_response = variable[int(float(user_response))]
         elif typeq == 2 : #flag2 yes/no
             if "yes" in user_response:
-                question , answer , score = cosine(firstq + variable[0] )
+                question , answer , score = cosine(firstq +  " "+variable )
                 robo_response = robo_response+"Here I found top questions related to your query from amazon <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
                 flag = 6
                 variable = answer
@@ -143,11 +139,8 @@ def response(user_response , firstq , typeq , variable):
                 robo_response = robo_response+"<br> Reply product number if your product is in it"
                 flag = 4
                 variable = productcode
-        
-
-
         elif typeq == 3 :  #flag 3
-            question , answer , score = cosine(variable)
+            question , answer , score = cosine(firstq+ " "+variable)
             robo_response = robo_response+"Here I found top questions related to your query from amazon<br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
             flag = 6
             variable = answer
@@ -180,29 +173,25 @@ def response(user_response , firstq , typeq , variable):
                     robo_response = "Oh.. I'm confused ... Do you want to search other question"
                     flag = 7
                     variable = 0
-            
         elif typeq == 6 : #answers
             try :
                 if 0 < (int(float(user_response)))< 6 :
                     robo_response = variable[int(float(user_response))-1]
                     robo_response = robo_response+"If you want another questions answer , tell me its number"
                     flag = 6
-                    
-                
                 elif "no" in user_response :
                     robo_response = "Thank you for your query"
                     flag = 0
                     variable = 0
                     firstq = 0
                 else :
-                    robo_response = "Invalid input Do you want to search other question"
+                    robo_response = "✌️"
                     flag = 7
                     variable = 0
             except :
-                robo_response = "Invalid input Do you want to search other question"
+                robo_response = "💡"
                 flag = 7
                 variable = 0
-            
         elif typeq == 7: # reset
             if "yes" in user_response:
                 flag = 0
@@ -215,7 +204,6 @@ def response(user_response , firstq , typeq , variable):
                 variable = 0
                 firstq = 0
                 robo_response = "Thank you"
-
         elif typeq == 8 :#not lucky
             if "no" in user_response:
                 flag = 101
@@ -226,11 +214,13 @@ def response(user_response , firstq , typeq , variable):
             flag = 0
             variable = 0
             firstq = 0
+
     except :
-            robo_response = "Invalid input tell me another question"
-            flag = 0
-            variable = 0
-            firstq = 0
+        robo_response = "Oh.. I am exhausted 🤯 <br><br> Tell me another question"
+        flag = 0
+        variable = 0
+        firstq = 0
+    
 
     return robo_response , flag , variable ,firstq
 
@@ -249,7 +239,9 @@ def robot(user_response):
     user_response = clean(user_response)
     if(user_response != 'bye'):
       if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
-        k ="You are welcome !"
+        k ="<br><br> You are welcome !"
+      if "about you" in user_response:
+        k = "I am Qbot😎 <br><br>Want to Know more about me ? Ask him 👇 <br><br> <a href='https://www.linkedin.com/in/rahulr2k'>Rahul Babu K </a>"
       else:
         if(greeting(user_response) != None):
           k = greeting(user_response)
