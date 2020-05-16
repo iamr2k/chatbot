@@ -20,6 +20,12 @@
         <input id="buttonInput" type="submit" value="Send" style="left: 90vw;">
       </div>
       <script>
+        function secondresp() {
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<button class="botText"><span>' + data + '</span></button>';
+            });
+        }
+       
         function getBotResponse() {
           var rawText = $("#textInput").val();
           var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
@@ -37,8 +43,7 @@
             if(data == "I am confused with the product you are talking about. I am searching it in google please wait") {
               var botHtml = '<button class="botText"><span>' + "Finding results" + '</span></button>';
               $("#chatbox").append(botHtml);
-              $.get("/get", { msg: rawText }).done(function(data) {
-              var botHtml = '<button class="botText"><span>' + data + '</span></button>';
+              secondresp();
             }
           });
         }
