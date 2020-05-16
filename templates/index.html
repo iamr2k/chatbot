@@ -21,9 +21,18 @@
       </div>
       <script>
         function secondresp() {
-          $.get("/get", { msg: "ok" }).done(function(data) {
-            var botHtml = '<button class="botText"><span>' + data + '</span></button>';
+          var rawText = "ok"
+          document.getElementById("textInput").disabled = true;
+          document.getElementById("buttonInput").disabled = true;
+          $.get("/get", { msg: rawText }).done(function(data) {
+            
+            var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
+            $(".botText4").remove();
+            $("#chatbox").append(botHtml);
+            document.getElementById("textInput").disabled = false;
+            document.getElementById("buttonInput").disabled = false;
             });
+            
         }
        
         function getBotResponse() {
@@ -33,15 +42,15 @@
           $("#chatbox").append(userHtml);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           if(rawText == "hi") {
-            var botHtml = '<button class="botText"><span>' + "Hello" + '</span></button>';
+            var botHtml = '<br><button class="botText"><span>' + "Hello" + '</span></button>';
             $("#chatbox").append(botHtml);
           }
           $.get("/get", { msg: rawText }).done(function(data) {
             var botHtml = '<button class="botText"><span>' + data + '</span></button>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            if(botHtml == '<button class="botText"><span>I am confused with the product you are talking about. I am searching it in google please wait</span></button>') {
-              var botHtml = '<button class="botText"><span>' + "Finding results" + '</span></button>';
+            if(data == 'I am confused with the product you are talking about. I am searching it in google please wait') {
+              var botHtml = '<br><button class="botText"><span>' + "Finding results" + '</span></button>';
               $("#chatbox").append(botHtml);
               secondresp();
             }

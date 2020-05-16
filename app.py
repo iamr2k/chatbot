@@ -129,12 +129,12 @@ def response(user_response , firstq , typeq , variable):
         elif typeq == 2 : #flag2 yes/no
             if "yes" in user_response:
                 question , answer , score = cosine(firstq + variable[0] )
-                robo_response = robo_response+"Here I found top questions and answers related to your query <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4]
+                robo_response = robo_response+"Here I found top questions related to your query from amazon <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
                 flag = 6
                 variable = answer
             elif "no" in user_response:
                 productcode = variable
-                robo_response = robo_response+"I am confused with the product you are talking about i found similar product based on your question reply me its index"
+                robo_response = robo_response+"I am confused with the product you are talking about I found similar product based on your question reply me its index"
                 num = 0
                 for i in productcode:
                     num += 1
@@ -150,7 +150,7 @@ def response(user_response , firstq , typeq , variable):
 
         elif typeq == 3 :  #flag 3
             question , answer , score = cosine(variable)
-            robo_response = robo_response+"Here I found top questions and answers related to your query <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4]
+            robo_response = robo_response+"Here I found top questions related to your query from amazon<br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
             flag = 6
             variable = answer
         elif typeq == 4 : #choose product
@@ -158,7 +158,7 @@ def response(user_response , firstq , typeq , variable):
                 if 0 < (int(float(user_response)))< 6 :
                     k = variable[int(float(user_response))-1]
                     question , answer , score = cosine(firstq + k)
-                    robo_response = robo_response+"Here I found top questions and answers related to your query <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4]
+                    robo_response = robo_response+"Here I found top questions related to your query from amazon<br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4]+"<br> <br> Replay question number to view its answer"
                     flag = 6
                     variable = answer
                 elif "not" in user_response :
@@ -168,7 +168,7 @@ def response(user_response , firstq , typeq , variable):
                     robo_response = "Please tell me more about it"
                     flag = 0
                 else :
-                    robo_response = "Invalid input Do you want to search other question"
+                    robo_response = "Sorry I couldn't Understand that  Do you want to search other question"
                     flag = 7
                     variable = 0
             except :
@@ -213,6 +213,9 @@ def response(user_response , firstq , typeq , variable):
                 robo_response = "Okay ... tell me your next question"
             elif "no" in user_response:
                 flag =9
+                flag = 0
+                variable = 0
+                firstq = 0
                 robo_response = "Thank you"
 
         elif typeq == 8 :#not lucky
@@ -248,15 +251,15 @@ def robot(user_response):
     user_response = clean(user_response)
     if(user_response != 'bye'):
       if('thanks' in user_response  or 'thank' in user_response or 'thankyou'in user_response ):
-        k ="DOCBot: You are welcome !"
+        k ="You are welcome !"
       if('want' in user_response  or 'know' in user_response or 'question'in user_response ):
         k = "Yeah ! Tell me"
       else:
         if(greeting(user_response) != None):
-          k = "DOCBot: "+greeting(user_response)
+          k = greeting(user_response)
         else:
           resp , typeq , variable , firstq ,action = response(user_response ,firstq ,typeq , variable)
-          k = "DOCBot: "+str(resp)
+          k = str(resp)
     return k , action
         
 
