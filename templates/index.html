@@ -18,7 +18,7 @@
         <button class="botText3"><span>I will search it in amazon product questions.</span></button>
       </div>
       <div id="userInput">
-        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus >  <br>
+        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>  <br>
         <input id="buttonInput" type="submit" value="Send" style="left: 90vw;">
       </div>
       <script>
@@ -26,6 +26,7 @@
           var rawText = "ok"
           document.getElementById("textInput").disabled = true;
           document.getElementById("buttonInput").disabled = true;
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           $.get("/get", { msg: rawText }).done(function(data) {
             
             var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
