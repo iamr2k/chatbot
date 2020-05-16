@@ -21,7 +21,7 @@
       </div>
       <script>
         function secondresp() {
-          $.get("/get", { msg: rawText }).done(function(data) {
+          $.get("/get", { msg: "ok" }).done(function(data) {
             var botHtml = '<button class="botText"><span>' + data + '</span></button>';
             });
         }
