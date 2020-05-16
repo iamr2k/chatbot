@@ -179,7 +179,7 @@ def response(user_response , firstq , typeq , variable):
                     robo_response = "Please tell me more about it"
                     flag = 0
                 else :
-                    robo_response = "Invalid input Do you want to search other question"
+                    robo_response = "Oh.. I'm confused ... Do you want to search other question"
                     flag = 7
                     variable = 0
             

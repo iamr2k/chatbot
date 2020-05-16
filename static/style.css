@@ -302,7 +302,39 @@ h3 {
 
   
 }
+.botText4 {
+  font-family: monospace;
+  font-size: 17px;
+  text-align: left;
+  line-height: 30px;
+  color: white;
+  background-color: transparent;
+  border-radius: 15px;
+  border: 2px solid #EF5350;
+  -webkit-animation: mainFadeIn 1s forwards;
+  -o-animation: mainFadeIn 1s forwards;
+  animation: mainFadeIn 1s forwards;
+  animation-delay: 1.5s;
+  opacity: 20;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
 
+.botText4 span {
+  background-color: transparent;
+  padding : 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  -webkit-animation: mainFadeIn 1s forwards;
+  -o-animation: mainFadeIn 1s forwards;
+  animation: mainFadeIn 1s forwards;
+  animation-delay: 1.5s;
+  opacity: 20;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  
+}
 #tidbit {
     position:absolute;
     bottom:0;
