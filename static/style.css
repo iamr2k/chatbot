@@ -1,5 +1,6 @@
 body {
     font-family: Garamond;
+    background-color: black;
 }
 
 h1 {
@@ -45,7 +46,7 @@ h3 {
       display: block;
       transition: 0.2s;
       font-size: 17px;
-      color: black;
+      color: white;
       font-weight:700;  
       outline: 0;  
     }
@@ -138,9 +139,13 @@ h3 {
   }
 }
 #buttonInput {
-    padding: 3px;
+    position: sticky;
     font-family: monospace;
     font-size: 17px;
+    background-color: black;
+    color: white;
+    border: 2px solid #4CAF50; /* Green */
+    padding: 10px;
 }
 
 
@@ -153,22 +158,24 @@ h3 {
 }
 
 .userText span {
-    background-color: #009688;
+    background-color:transparent;
     padding : 10px;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 50px;
+    border: 2px solid rgb(80, 239, 173);
 }
 
 .botText {
-    color: white;
     font-family: monospace;
     font-size: 17px;
     text-align: left;
     line-height: 30px;
+    color: white;
+    background-color: transparent;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: #EF5350
+    border: 2px solid #EF5350;
 }
 
 .botText span {
