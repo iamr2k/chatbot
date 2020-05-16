@@ -40,7 +40,7 @@
             var botHtml = '<button class="botText"><span>' + data + '</span></button>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            if(data == "I am confused with the product you are talking about. I am searching it in google please wait") {
+            if(data == '<button class="botText"><span>I am confused with the product you are talking about. I am searching it in google please wait</span></button>') {
               var botHtml = '<button class="botText"><span>' + "Finding results" + '</span></button>';
               $("#chatbox").append(botHtml);
               secondresp();
