@@ -77,8 +77,9 @@ def response(user_response , firstq , typeq , variable):
     print(user_response,typeq,firstq)
     robo_response = ''
     score = [0]
+    flag = 0
     try :
-        if (typeq == 0) : #first robo response
+        if (typeq == 0) and len(user_response)>6: #first robo response
             firstq = user_response
             question , answer , score = cosine(user_response)
             flag = 1
@@ -91,15 +92,21 @@ def response(user_response , firstq , typeq , variable):
                 if similarity[0]>0.4:
                     robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in the internet please wait"
                     flag = 33
-                    variable = productcode[0]
+                    variable = productcode
                     print(variable)
                 elif (similarity[0]<= 0.4):
                     robo_response = robo_response+"I am confused with the product you are talking about. I am searching it in the internet please wait"
                     flag = 34
                     variable = productcode
                     print(variable)
+        elif (typeq == 0) and len(user_response)>6:
+            robo_response = robo_response + "Tell me your question"
+            flag = 0
+            variable = 0
+            firstq = 0
+
         elif(typeq == 33):
-            productname = productq(variable)
+            productname = productq(variable[0])
             if productname != 'product not found':
                 robo_response = robo_response+"Is it "+productname + " ?"
                 flag = 2
@@ -120,15 +127,16 @@ def response(user_response , firstq , typeq , variable):
             robo_response = robo_response+"<br> Reply product number if your product is in it"
         elif typeq == 1 : #flag1 lucky answers
             robo_response = variable[int(float(user_response))]
+            flag = 9
         elif typeq == 2 : #flag2 yes/no
             if "yes" in user_response:
-                question , answer , score = cosine(firstq +  " "+variable )
+                question , answer , score = cosine(firstq +  " "+variable[0] )
                 robo_response = robo_response+"Here I found top questions related to your query from amazon <br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
                 flag = 6
                 variable = answer
             elif "no" in user_response:
                 productcode = variable
-                robo_response = robo_response+"I am confused with the product you are talking about I found similar product based on your question reply me its index"
+                robo_response = robo_response+"I am confused with the product you are talking about I found similar products based on your question reply me its index"
                 num = 0
                 for i in productcode:
                     num += 1
@@ -140,7 +148,7 @@ def response(user_response , firstq , typeq , variable):
                 flag = 4
                 variable = productcode
         elif typeq == 3 :  #flag 3
-            question , answer , score = cosine(firstq+ " "+variable)
+            question , answer , score = cosine(firstq+ " "+variable[0])
             robo_response = robo_response+"Here I found top questions related to your query from amazon<br> 1."+question[0] +"<br> 2."+question[1] +"<br> 3."+question[2] +"<br> 4."+question[3] +"<br> 5."+question[4] +"<br> <br> Replay question number to view its answer"
             flag = 6
             variable = answer
@@ -184,12 +192,15 @@ def response(user_response , firstq , typeq , variable):
                     flag = 0
                     variable = 0
                     firstq = 0
+                elif 6 < (int(float(user_response))):
+                    robo_response = "Your input is not in the index , choose from 1-5"
+                    flag = 6
                 else :
-                    robo_response = "✌️"
+                    robo_response = "Not matching input Do you want to ask another question ?"
                     flag = 7
                     variable = 0
             except :
-                robo_response = "💡"
+                robo_response = "💡 Do you want to ask another question ?"
                 flag = 7
                 variable = 0
         elif typeq == 7: # reset
