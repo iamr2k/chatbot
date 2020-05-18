@@ -1,8 +1,6 @@
-from flask import Flask,render_template,url_for,request,make_response
+from flask import Flask,render_template,url_for,request
 import pandas as pd 
 import pickle
-import json
-from flask_cors import cross_origin
 import string
 import re
 import pandas as pd
@@ -280,50 +278,5 @@ def get_bot_response():
     response = robot(userText)
     return response
 
-
-
-# geting and sending response to dialogflow
-@app.route('/webhook', methods=['POST'])
-@cross_origin()
-def webhook():
-
-
-    req = request.get_json(silent=True, force=True)
-    res = processRequest(req)
-    res = json.dumps(res, indent=4)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
-
-
-# processing the request from dialogflow
-def processRequest(req):
-
-
-    result = req.get("queryResult")
-    
-    #Fetching the data points
-    parameters = result.get("parameters")
-    user = parameters.get("response")
-
-    usertext = str(user)
-    
-  
-    
-    #Getting the intent which has fullfilment enabled
-    intent = result.get("intent").get('displayName')
-    
-    #Fitting out model with the data points
-    if (intent=='welcome'):
-    
-        response = robot(usertext)
-    
-        return {
-            "fulfillmentText": response
-        }
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
-
-
