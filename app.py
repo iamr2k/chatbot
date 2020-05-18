@@ -146,7 +146,7 @@ def response(user_response , firstq , typeq , variable):
                     if  productq(i) != 'product not found':
                         k = productq(i)
                     robo_response = robo_response + "<br>" + str(num) + k
-                robo_response = robo_response+"<br> Reply product number if your product is in it"
+                robo_response = robo_response+"<br><br><br> Reply product number if your product is in it"
                 flag = 4
                 variable = productcode
         elif typeq == 3 :  #flag 3

@@ -29,7 +29,6 @@
           $.get("/get", { msg: rawText }).done(function(data) {
             
             var botHtml = ' <br><button class="botText"><span>' + data + '</span></button>';
-            $(".botText4").remove();
             $("#chatbox").append(botHtml);
             
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
