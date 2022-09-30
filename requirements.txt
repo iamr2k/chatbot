@@ -20,7 +20,7 @@ HeapDict==1.0.1
 html5lib==1.0.1
 idna==2.8
 Jinja2==2.10.3
-joblib==0.13.2
+joblib==1.2.0
 json5==0.8.5
 keyring==18.0.0
 numpy==1.16.5
